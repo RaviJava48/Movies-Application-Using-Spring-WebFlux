@@ -1,0 +1,58 @@
+POST-REVIEW:
+------------
+$body = @{
+    reviewId = 1
+    movieInfoId = 1
+    comment = "Excellent Movie"
+    rating = 8.0
+} | ConvertTo-Json -Compress
+Invoke-RestMethod -Uri "http://localhost:8081/api/v1/review/addReview" -Method Post -Body $body -ContentType "application/json"
+
+$body = @{
+    reviewId = 2
+    movieInfoId = 2
+    comment = "Excellent Movie"
+    rating = 8.0
+} | ConvertTo-Json -Compress
+Invoke-RestMethod -Uri "http://localhost:8081/api/v1/review/addReview" -Method Post -Body $body -ContentType "application/json"
+
+$body = @{
+    reviewId = $null
+    movieInfoId = 1
+    comment = "Awesome Movie"
+    rating = 9.0
+} | ConvertTo-Json -Compress
+Invoke-RestMethod -Uri "http://localhost:8081/api/v1/review/addReview" -Method Post -Body $body -ContentType "application/json"
+
+
+
+GET-ALL-REVIEWS:
+----------------
+Invoke-RestMethod -Uri "http://localhost:8081/api/v1/review/getAllReviews" -Method Get
+
+
+GET-ALL-REVIEWS-BY-MOVIE-INFO-ID:
+--------------------------------
+Invoke-RestMethod -Uri "http://localhost:8081/api/v1/review/getAllReviews?movieInfoId=1" -Method Get
+
+Invoke-RestMethod -Uri "http://localhost:8081/api/v1/review/getAllReviews?movieInfoId=2" -Method Get
+
+GET-ALL-REVIEWS-STREAM:
+----------------
+Invoke-RestMethod -Uri "http://localhost:8081/v1/reviews/stream" -Method Get
+
+
+UPDATE-REVIEW:
+----------------
+$body = @{
+    reviewId = 1
+    movieInfoId = 1
+    comment = "Awesome Storyline"
+    rating = 9.0
+} | ConvertTo-Json -Compress
+Invoke-RestMethod -Uri "http://localhost:8081/api/v1/review/updateReview/1" -Method Put -Body $body -ContentType "application/json"
+
+
+DELETE-MOVIE-INFO
+-----------------------
+Invoke-RestMethod -Uri "http://localhost:8081/api/v1/review/deleteReview/1" -Method Delete
