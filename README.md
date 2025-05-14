@@ -1,4 +1,4 @@
-# Movies-Application-Using-Spring-WebFlux
+# Movies-Application-With-Spring-WebFlux
 Developed Movies application involving Reactive Microservices built using Spring WebFlux and Project Reactor.
 
 Implemented different operators from Project Reactor to manipulate reactive data streams like Flux and Mono
